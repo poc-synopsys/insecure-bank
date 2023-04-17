@@ -1,0 +1,48 @@
+version: "1"
+project:
+  name: sig-demo/insecure-bank
+  branch: main
+  revision:
+    name: ${scm.git.commit}
+    date: ${scm.git.commit.date}
+capture:
+  build:
+    cleanCommands:
+    - shell: [mvn, -B, -f, pom.xml, clean]
+    buildCommands:
+    - shell: [mvn, -B, -f, pom.xml, package, -DskipTests=true]
+    coverity:
+      cov-build: [--disable-decomp]
+  fileSystem:
+    ears:
+      extensions: [ear]
+      files:
+      - directory: ${project.projectDir}
+    java:
+      files:
+      - directory: ${project.projectDir}
+    javascript:
+      files:
+      - directory: ${project.projectDir}
+      - excludeRegex: node_modules|bower_components|vendor|[/\\]?plugins[/\\]|[/\\]?resources[/\\]
+    php:
+      files:
+      - directory: ${project.projectDir}
+    python:
+      files:
+      - directory: ${project.projectDir}
+    ruby:
+      files:
+      - directory: ${project.projectDir}
+    wars:
+      extensions: [war]
+      files:
+      - directory: ${project.projectDir}
+analyze:
+  mode: central
+  coverity:
+    cov-analyze: ["--all", "--webapp-security", "--enable-audit-mode"]
+install:
+  coverity:
+    version: 2022.9.0
+serverUrl: 

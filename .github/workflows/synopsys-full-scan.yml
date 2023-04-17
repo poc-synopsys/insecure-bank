@@ -1,0 +1,45 @@
+name: "Synopsys Full Scan"
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    env:
+      POLARIS_SERVER_URL:  ${{ secrets.POLARIS_SERVER_URL }}
+      POLARIS_ACCESS_TOKEN:  ${{ secrets.POLARIS_ACCESS_TOKEN }}
+      BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL}}
+      BLACKDUCK_API_TOKEN: ${{ secrets.BLACKDUCK_API_TOKEN }}
+      CDX_SERVER_URL: ${{ secrets.CDX_SERVER_URL }}
+      CDX_API_KEY: ${{ secrets.CDX_API_KEY }}
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    # Perform Coverity on Polaris Analysis
+    - name: Coverity on Polaris (SAST)
+      run: |
+        curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+        unzip -d /tmp -jo polaris_cli-linux64.zip
+        /tmp/polaris analyze -w
+        
+    # Perform Black Duck Analysis          
+    - name: Black Duck (SCA)
+      run: |
+          bash <(curl -s -L https://detect.synopsys.com/detect7.sh) '--blackduck.url=$BLACKDUCK_URL \
+             --blackduck.api.token=$BLACKDUCK_API_TOKEN \
+            --detect.project.name=sig-demo/insecure-bank \
+             --detect.project.version.name=v1.2 \
+             --detect.blackduck.signature.scanner.snippet.matching=SNIPPET_MATCHING \
+             --detect.blackduck.signature.scanner.upload.source.mode=true'
+             
+    # Trigger CodeDx scan          
+    - name: CodeDx
+      uses: 'codedx/codedx-github-action@v1.1'
+      with:
+        server-url: ${{ secrets.CDX_SERVER_URL }}
+        api-key: ${{ secrets.CDX_API_KEY }}
+        project-id: 55
+        source-and-binaries-glob: './**'
+        wait-for-completion: false
