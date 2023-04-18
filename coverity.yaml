@@ -1,0 +1,10 @@
+# Coverity configuration file.
+
+capture:
+  build:
+    clean-command: mvn clean
+    build-command: mvn install -DskipTests=true
+  security-da: false
+analyze:
+  checkers:
+  cov-analyze-args: ["--all", "--webapp-security", "--enable-audit-checkers"]
