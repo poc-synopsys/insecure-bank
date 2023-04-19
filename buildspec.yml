@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+       - curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64 
+       - unzip bridge.zip  
+  build:
+    commands:
+       - ./synopsys-bridge --verbose --stage polaris polaris.assessment.types=SAST
+       - ./synopsys-bridge --stage blackduck  blackduck.url=$BD_URL  blackduck.token=$BD_TOKEN blackduck.automation.fixpr=false
+  post_build:
+    commands:
+      - echo Scan completed on `date`
