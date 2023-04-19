@@ -27,8 +27,8 @@ jobs:
   Black-Duck:
     runs-on: ubuntu-latest
     steps:
-#    - name: Checkout Source
-#      uses: actions/checkout@v3
+    - name: Checkout Source
+      uses: actions/checkout@v3
     - name: Setup Java JDK
       uses: actions/setup-java@v3
       with:
