@@ -12,6 +12,8 @@ jobs:
       BRIDGE_POLARIS_APPLICATION_NAME: "FCBR" # github.event.repository.name
       BRIDGE_POLARIS_PROJECT_NAME: "insecure-bank"
       BRIDGECLI_LINUX64: ${{ secrets.BRIDGECLI_LINUX64 }}
+      BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL }}
+      BLACKDUCK_ACCESS_TOKEN: ${{ secrets.BLACKDUCK_ACCESS_TOKEN }}
       
     steps:
     - name: Checkout
@@ -33,5 +35,5 @@ jobs:
         
     - name: Black Duck (SCA)
       run: |
-         - .$RUNNER_TEMP/synopsys-bridge --stage blackduck  blackduck.url=$BLACKDUCK_URL  blackduck.token=$BLACKDUCK_ACCESS_TOKEN blackduck.automation.fixpr=false
+        $RUNNER_TEMP/synopsys-bridge --stage blackduck  blackduck.url=$BLACKDUCK_URL  blackduck.token=$BLACKDUCK_ACCESS_TOKEN blackduck.automation.fixpr=false
 
