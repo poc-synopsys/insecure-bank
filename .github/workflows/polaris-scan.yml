@@ -1,4 +1,4 @@
-name: "Polaris Scan"
+name: "Synopsys CLI"
 
 on:
   workflow_dispatch
@@ -22,15 +22,16 @@ jobs:
         java-version: 11
         distribution: microsoft
         cache: maven
-
-    - name: Maven Build
-      run: |
-        mvn clean install -DskipTests=true
         
     - name: Download Bridge CLI
       run: |
         curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64 && unzip -qo -d $RUNNER_TEMP bridge.zip && rm -f bridge.zip
         
-    - name: Run SAST + SCA
+    - name: Polaris (SAST)
       run: |
-        $RUNNER_TEMP/synopsys-bridge --verbose --stage polaris polaris.assessment.types=SAST,SCA
+        $RUNNER_TEMP/synopsys-bridge --verbose --stage polaris polaris.assessment.types=SAST
+        
+    - name: Black Duck (SCA)
+      run: |
+         - .$RUNNER_TEMP/synopsys-bridge --stage blackduck  blackduck.url=$BLACKDUCK_URL  blackduck.token=$BLACKDUCK_ACCESS_TOKEN blackduck.automation.fixpr=false
+
