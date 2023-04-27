@@ -26,7 +26,7 @@ jobs:
           curl -fLsS --user $COVERITY_USER:$COVERITY_PASSWORD $COVERITY_URL/downloadFile.htm?fn=cov-analysis-$COVERITY_OS-$COVERITY_VERSION.tar.gz | tar -C /tmp -xzf -
           curl -fLsS --user $COVERITY_USER:$COVERITY_PASSWORD -o /tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/license.dat $COVERITY_URL/downloadFile.htm?fn=license-cov-unlocked.dat
           echo "/tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/" >> $GITHUB_PATH
-          ./cov-manage-im --url $COVERITY_URL --user $COVERITY_USER --password $COVERITY_PASSWORD --mode auth-key --create --output-file auth.key
+          /tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/cov-manage-im --url $COVERITY_URL --user $COVERITY_USER --password $COVERITY_PASSWORD --mode auth-key --create --output-file auth.key
           
     - name: Coverity Scan
       run: .\coverity scan
