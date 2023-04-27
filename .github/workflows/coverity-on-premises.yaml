@@ -29,4 +29,4 @@ jobs:
           /tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/cov-manage-im --url $COVERITY_URL --user $COVERITY_USER --password $COVERITY_PASSWORD --mode auth-key --create --output-file auth.key
           
     - name: Coverity Scan
-      run: .\coverity scan
+      run: coverity scan
