@@ -1,10 +1,18 @@
-# Coverity configuration file.
-
 capture:
   build:
-    clean-command: mvn clean
     build-command: mvn install -DskipTests=true
+    clean-command: mvvn clean
   security-da: false
 analyze:
+  aggressiveness-level: medium
   checkers:
-  cov-analyze-args: ["--all", "--webapp-security", "--enable-audit-checkers"]
+    all: true
+    audit: true
+    webapp-security:
+      enabled: true
+      aggressiveness-level: medium
+  constraint-fpp: true
+commit:
+  connect:
+    stream: fcbr_insecure-bank
+    url: https://partner-demo.coverity.synopsys.com
