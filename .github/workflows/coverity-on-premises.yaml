@@ -23,7 +23,7 @@ jobs:
     # Download Coverity
     - name: Download Coverity
       run: |        
-          curl -fLsS --user Arthur:Synopsys#2022 https://partner-demo.coverity.synopsys.com/downloadFile.htm?fn=cov-analysis-linux64-2023.3.0.tar.gz | tar -C /tmp -xzf -
+          curl -fLsS --user Arthur:Synopsys#2022 https://partner-demo.coverity.synopsys.com/downloadFile.htm?fn=cov-analysis-linux64-2023.3.0.tar.gz --ssl-no-revoke | tar -C /tmp -xzf -
           curl -fLsS --user $COVERITY_USER:$COVERITY_PASSWORD -o /tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/license.dat $COVERITY_URL/downloadFile.htm?fn=license-cov-unlocked.dat
           echo "/tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/" >> $GITHUB_PATH
           /tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/cov-manage-im --url $COVERITY_URL --user $COVERITY_USER --password $COVERITY_PASSWORD --mode auth-key --create --output-file auth.key
