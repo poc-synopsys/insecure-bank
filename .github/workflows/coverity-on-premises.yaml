@@ -8,12 +8,13 @@ jobs:
     runs-on: Ubuntu-Latest
     env:
       COVERITY_OS: "linux64"
-      COVERITY_URL:  ${{ secrets.COVERI${{ secrets.COVERITY_USER  }}TY_URL }}
+      COVERITY_URL:  ${{ secrets.COVERI${{ secrets.COVERITY_USER  }}
       COVERITY_USER:  ${{ secrets.COVERITY_USER  }}
       COVERITY_PASSWORD: ${{ secrets.COVERITY_PASSWORD  }}
       COVERITY_VERSION: ${{ secrets.COVERITY_VERSION  }}
       COVERITY_CLI_CONNECT_USERNAME: ${{ secrets.COVERITY_USER  }}
       COVERITY_CLI_CONNECT_PASSWORD: ${{ secrets.COVERITY_PASSWORD  }}
+      
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v2
