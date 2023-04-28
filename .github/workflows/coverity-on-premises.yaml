@@ -8,7 +8,7 @@ jobs:
     runs-on: Ubuntu-Latest
     env:
       COVERITY_OS: "linux64"
-      COVERITY_URL:  ${{ secrets.COVERI${{ secrets.COVERITY_USER  }}
+      COVERITY_URL:  ${{ secrets.COVERITY_URL  }}
       COVERITY_USER:  ${{ secrets.COVERITY_USER  }}
       COVERITY_PASSWORD: ${{ secrets.COVERITY_PASSWORD  }}
       COVERITY_VERSION: ${{ secrets.COVERITY_VERSION  }}
