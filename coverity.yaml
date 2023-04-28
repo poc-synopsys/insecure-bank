@@ -14,6 +14,5 @@ analyze:
   constraint-fpp: true
 commit:
   connect:
-    auth-key-file: auth.key
     stream: fcbr_insecure-bank
     url: https://partner-demo.coverity.synopsys.com
