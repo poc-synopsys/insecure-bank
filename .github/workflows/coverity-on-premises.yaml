@@ -8,13 +8,13 @@ jobs:
     runs-on: Ubuntu-Latest
     env:
       COVERITY_OS: "linux64"
-      COVERITY_URL:  ${{ secrets.COVERITY_URL  }}
+      COVERITY_URL:  ${{ secrets.COVERITY_URL }}
       COVERITY_USER:  ${{ secrets.COVERITY_USER  }}
-      COVERITY_PASSWORD: ${{ secrets.COVERITY_PASSWORD  }}
-      COVERITY_VERSION: ${{ secrets.COVERITY_VERSION  }}
       COVERITY_CLI_CONNECT_USERNAME: ${{ secrets.COVERITY_USER  }}
       COVERITY_CLI_CONNECT_PASSWORD: ${{ secrets.COVERITY_PASSWORD  }}
-      
+      COVERITY_PASSWORD: ${{ secrets.COVERITY_PASSWORD  }}
+      COVERITY_VERSION: ${{ secrets.COVERITY_VERSION  }}
+
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v2
@@ -25,9 +25,9 @@ jobs:
     # Download Coverity
     - name: Download Coverity
       run: |        
-          curl -fLsS -user $COVERITY_USER:$COVERITY_PASSWORD $COVERITY_URL/downloadFile.htm?fn=cov-analysis-$COVERITY_OS-$COVERITY_VERSION.tar.gz | tar -C /tmp -xzf -
+          curl -fLsS --user $COVERITY_USER:$COVERITY_PASSWORD $COVERITY_URL/downloadFile.htm?fn=cov-analysis-$COVERITY_OS-$COVERITY_VERSION.tar.gz | tar -C /tmp -xzf -
           curl -fLsS --user $COVERITY_USER:$COVERITY_PASSWORD -o /tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/license.dat $COVERITY_URL/downloadFile.htm?fn=license-cov-unlocked.dat
           echo "/tmp/cov-analysis-$COVERITY_OS-$COVERITY_VERSION/bin/" >> $GITHUB_PATH
-          
+  
     - name: Coverity Scan
       run: coverity scan
