@@ -1,17 +1,17 @@
-capture:
-  build:
-    build-command: mvn install -DskipTests=true
-    clean-command: mvvn clean
-  security-da: false
-analyze:
-  aggressiveness-level: medium
-  checkers:
-    all: true
-    audit: true
-    webapp-security:
-      enabled: true
-      aggressiveness-level: medium
-  constraint-fpp: true
+#capture:
+#  build:
+#    build-command: mvn install -DskipTests=true
+#    clean-command: mvvn clean
+#  security-da: false
+#analyze:
+#  aggressiveness-level: medium
+#  checkers:
+#    all: true
+#    audit: true
+#    webapp-security:
+#      enabled: true
+#      aggressiveness-level: medium
+#  constraint-fpp: true
 #commit:
 #  connect:
 #    auth-key-file: auth.key
