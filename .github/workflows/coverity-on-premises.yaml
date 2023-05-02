@@ -31,6 +31,8 @@ jobs:
   
     - name: Coverity Scan
       run: |
+          cov-configure --java
+          cov-configure --javascript
           cov-build --dir idir --fs-capture-search . mvn clean install -DskipTests=true
           cov-analyze --dir idir --all --webapp-security --enable-audit-checkers
           cov-commit-defects --dir idir --url $COVERITY_URL --user $COVERITY_USER --password $COVERITY_PASSWORD --stream fcbr_insecure-bank
