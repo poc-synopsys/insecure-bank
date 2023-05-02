@@ -8,18 +8,17 @@
 # - BD_URL
 
 version: 0.2
-env:
-  shell: bash
 phases:
-  pre_build:
+  install:
     commands:
-       - curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64 
+       - curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64
        - unzip bridge.zip  
+       - curl -LOk https://detect.synopsys.com/detect8.sh
+       - chmod +x ./detect8.sh
   build:
     commands:
        - ./synopsys-bridge --verbose --stage polaris polaris.assessment.types=SAST
-       - bash <(curl -s -L https://detect.synopsys.com/detect8.sh) --blackduck.url=$BD_URL --blackduck.api.token=$BD_TOKEN
+       - bash detect8.sh --blackduck.url=$BD_URL --blackduck.api.token=$BD_TOKEN
   post_build:
     commands:
       - echo Scan completed on `date`
-
