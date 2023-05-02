@@ -35,5 +35,4 @@ jobs:
         
     - name: Black Duck (SCA)
       run: |
-        $RUNNER_TEMP/synopsys-bridge --stage blackduck  blackduck.url=$BLACKDUCK_URL  blackduck.token=$BLACKDUCK_API_TOKEN blackduck.automation.fixpr=false
-
+        bash <(curl -s -L https://detect.synopsys.com/detect8.sh) --blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN
