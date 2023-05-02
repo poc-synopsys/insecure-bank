@@ -1,5 +1,6 @@
 version: 0.2
-
+env:
+  shell: bash
 phases:
   pre_build:
     commands:
@@ -8,7 +9,7 @@ phases:
   build:
     commands:
        - ./synopsys-bridge --verbose --stage polaris polaris.assessment.types=SAST
-       - ./synopsys-bridge --stage blackduck  blackduck.url=$BD_URL  blackduck.token=$BD_TOKEN blackduck.automation.fixpr=false
+       - bash <(curl -s -L https://detect.synopsys.com/detect8.sh) --blackduck.url=$BD_URL --blackduck.api.token=$BD_TOKEN
   post_build:
     commands:
       - echo Scan completed on `date`
