@@ -5,9 +5,8 @@
     <option name="SASTIsSortAscending" value="true" />
     <option name="SASTIssuesViewAutoScope" value="UnspecifiedFilterType" />
     <option name="SASTIssuesViewManualScope" value="FileScope" />
-    <option name="SASTIncludeRemoteIssues" value="true" />
-    <option name="SASTCurrentScanningMode" value="MANUAL" />
-    <option name="SASTLastManualScanType" value="COVERITY_FULL_SCAN" />
+    <option name="SASTCurrentScanningMode" value="REMOTE" />
+    <option name="SASTLastManualScanType" value="COVERITY_SINGLE_FILE" />
     <option name="SCAColumnStates">
       <list>
         <ColumnState>

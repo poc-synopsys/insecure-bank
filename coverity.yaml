@@ -14,5 +14,5 @@ analyze:
   constraint-fpp: true
 commit:
   connect:
-    stream: fcbr_insecure-bank
-    url: https://partner-demo.coverity.synopsys.com
+    stream: insecure-bank
+    url: http://localhost:8080
