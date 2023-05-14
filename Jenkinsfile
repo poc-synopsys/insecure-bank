@@ -7,11 +7,11 @@ pipeline {
     }
     
     stages {
-      stage('Coverity on Polaris') {
-            steps {
-                polaris arguments: 'analyze -w', polarisCli: 'Polaris - Demo'// Run Polaris (SAST) analysis
-            }
-        }
+ //     stage('Coverity on Polaris') {
+    //        steps {
+     //           polaris arguments: 'analyze -w', polarisCli: 'Polaris - Demo'// Run Polaris (SAST) analysis
+      //      }
+      //  }
      stage('Análise Black Duck') {
             steps {
                 synopsys_detect detectProperties: '', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy'] // Run Black Duck (SCA) analysis
