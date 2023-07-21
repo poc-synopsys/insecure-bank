@@ -15,15 +15,17 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Polaris Scan (SAST)
-        uses: synopsys-sig/synopsys-action@v1.1.0
+        uses: synopsys-sig/synopsys-action@v1.20
         with:
           polaris_serverUrl: ${{ secrets.BRIDGE_POLARIS_SERVERURL }}
           polaris_accessToken: ${{ secrets.BRIDGE_POLARIS_ACCESSTOKEN }}
           polaris_application_name: "FCBR"
           polaris_project_name: "insecure-bank"
-          polaris_assessment_types: "SAST"
+          polaris_assessment_types: "SAST"            
+          
+          
       - name: Black Duck Scan (SCA)
-        uses: synopsys-sig/synopsys-action@v1.1.0
+        uses: synopsys-sig/synopsys-action@v1.2.0
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
           DETECT_PROJECT_VERSION_NAME: ${{ github.ref_name }}
