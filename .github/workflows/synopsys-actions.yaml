@@ -20,7 +20,7 @@ jobs:
           polaris_serverUrl: ${{ secrets.BRIDGE_POLARIS_SERVERURL }}
           polaris_accessToken: ${{ secrets.BRIDGE_POLARIS_ACCESSTOKEN }}
           polaris_application_name: "FCBR"
-          polaris_project_name: "insecure-bank"
+          polaris_project_name: "POC"
           polaris_assessment_types: "SAST"            
           
           
