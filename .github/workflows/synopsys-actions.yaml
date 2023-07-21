@@ -15,7 +15,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Polaris Scan (SAST)
-        uses: synopsys-sig/synopsys-action@v1.20
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           polaris_serverUrl: ${{ secrets.BRIDGE_POLARIS_SERVERURL }}
           polaris_accessToken: ${{ secrets.BRIDGE_POLARIS_ACCESSTOKEN }}
