@@ -9,7 +9,7 @@
 - Java 11
 - Maven Build
 
-## Running the application locally
+## Running the application locally  
 
 1. Clone the repository:
 
