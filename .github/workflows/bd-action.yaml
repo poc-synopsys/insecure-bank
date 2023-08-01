@@ -12,18 +12,23 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
+      - name: Set up Java 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
 
       - name: Black Duck Full Scan
         if: ${{ github.event_name != 'pull_request' }}
         uses: synopsys-sig/synopsys-action@v1.2.0
-        ### Use below configuration to set specific detect environment variables
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
+          DETECT_PROJECT_VERSION_NAME: ${{ github.ref_name }}
+          DETECT_CODE_LOCATION_NAME: ${{ github.event.repository.name }}-${{ github.ref_name }}
         with:
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_scan_full: true
-          ### Accepts Multiple Values
           blackduck_scan_failure_severities: 'BLOCKER,CRITICAL'
           ### Uncomment below configuration to enable automatic fix pull request creation if vulnerabilities are reported
           # blackduck_automation_fixpr: true 
