@@ -45,12 +45,14 @@ jobs:
           DETECT_PROJECT_VERSION_NAME: ${{ github.base_ref }}
           DETECT_CODE_LOCATION_NAME: ${{ github.event.repository.name }}-${{ github.base_ref }}
           DETECT_EXCLUDED_DETECTOR_TYPES: 'GIT'
+          DETECT_BLACKDUCK_RAPID_COMPARE_MODE: 'ALL'
         with:
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_scan_full: false
           ### Below configuration is used to enable automatic pull request comment based on Black Duck scan result
           blackduck_automation_prcomment: true
+          
           github_token: ${{ secrets.GH_TOKEN }} # Mandatory when blackduck_automation_prcomment is set to 'true'
           ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
           # include_diagnostics: true
