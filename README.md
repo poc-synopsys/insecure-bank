@@ -6,7 +6,7 @@
 - Password: test
 
 ## Technology
-- Java 11
+- Java 11 
 - Maven Build
 
 ## Running the application locally
