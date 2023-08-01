@@ -3,7 +3,7 @@
 
 ## Login credentials 
 - Username: john
-- Password: test
+- Password: test 
 
 ## Technology
 - Java 11
