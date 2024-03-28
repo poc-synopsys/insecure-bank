@@ -1,0 +1,42 @@
+name: "Synopsys CLI"
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: Ubuntu-latest
+    env:
+      BRIDGE_POLARIS_SERVERURL: ${{ secrets.BRIDGE_POLARIS_SERVERURL }}
+      BRIDGE_POLARIS_ACCESSTOKEN: ${{ secrets.BRIDGE_POLARIS_ACCESSTOKEN }}
+      BRIDGE_POLARIS_APPLICATION_NAME: "FCBR" # github.event.repository.name
+      BRIDGE_POLARIS_PROJECT_NAME: "POC"
+      BRIDGECLI_LINUX64: ${{ secrets.BRIDGECLI_LINUX64 }}
+      BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL }}
+      BLACKDUCK_API_TOKEN: ${{ secrets.BLACKDUCK_API_TOKEN }}
+      
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: 11
+        distribution: microsoft
+        cache: maven
+        
+    - name: Download Bridge CLI
+      run: |
+        curl -fLsS -o bridge.zip $BRIDGECLI_LINUX64 && unzip -qo -d $RUNNER_TEMP bridge.zip && rm -f bridge.zip
+        
+    - name: Polaris (SAST)
+      run: |
+        $RUNNER_TEMP/synopsys-bridge --verbose --stage polaris polaris.assessment.types=SAST
+
+    - name: Polaris (SCA)
+      run: |
+        $RUNNER_TEMP/synopsys-bridge --verbose --stage polaris polaris.assessment.types=SCA
+        
+    - name: Black Duck (SCA)
+      run: |
+        bash <(curl -s -L https://detect.synopsys.com/detect8.sh) --blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_API_TOKEN --detect.project.name="insecure-bank" --detect.project.version.name="main"

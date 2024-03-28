@@ -1,0 +1,27 @@
+## SYNOPSYS ##
+
+# Synopsys Bridge
+.bridge
+bridge.log
+bridge_state.json
+idir
+
+# Coverity on Polaris
+.synopsys
+.polaris-output.zip
+
+# Sigma
+sigma-results.json
+
+# Maven Build
+.project
+.settings
+.classpath
+Target
+build.xml
+
+# Other
+/.apt_generated/
+/.apt_generated_tests/
+agent.config
+hdivAgentLog.hlg

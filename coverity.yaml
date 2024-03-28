@@ -1,0 +1,14 @@
+capture:
+  build:
+    build-command: mvn install -DskipTests=true
+    clean-command: mvn clean
+  security-da: false
+analyze:
+  aggressiveness-level: low
+  checkers:
+    all: true
+    webapp-security:
+      enabled: true
+      aggressiveness-level: low
+  cov-analyze-args:
+  - --enable-audit-mode

@@ -1,0 +1,18 @@
+{
+	"data": {
+		"polaris": {
+			"accesstoken": "",
+			"application": {
+				"name": ""
+			},
+			"project": {
+				"name": ""
+			},
+			"assessment": {
+				"types":  ["SAST", "SCA"]
+
+			},
+			"serverUrl": ""
+		}
+	}
+}

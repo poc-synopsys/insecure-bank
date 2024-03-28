@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SynopsysCodeSightSettings">
+    <option name="SASTSortField" value="Location" />
+    <option name="SASTIsSortAscending" value="true" />
+    <option name="SASTIssuesViewAutoScope" value="UnspecifiedFilterType" />
+    <option name="SASTIssuesViewManualScope" value="FileScope" />
+    <option name="SASTCurrentScanningMode" value="REMOTE" />
+    <option name="SASTLastManualScanType" value="COVERITY_SINGLE_FILE" />
+    <option name="SCAColumnStates">
+      <list>
+        <ColumnState>
+          <option name="name" value="" />
+          <option name="width" value="35" />
+        </ColumnState>
+        <ColumnState>
+          <option name="name" value="Component" />
+          <option name="width" value="75" />
+        </ColumnState>
+        <ColumnState>
+          <option name="name" value="Location" />
+          <option name="width" value="75" />
+        </ColumnState>
+        <ColumnState>
+          <option name="name" value="First Detected" />
+          <option name="width" value="75" />
+        </ColumnState>
+      </list>
+    </option>
+    <option name="version" value="3" />
+  </component>
+</project>
