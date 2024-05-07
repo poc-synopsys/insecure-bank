@@ -32,7 +32,7 @@ jobs:
         
     - name: SRM (SAST)
       run: |
-        $RUNNER_TEMP/synopsys-bridge --stage srm srm.url="https://poc219.srm.synopsys.com/" srm.project.name="FCBRR" srm.branch.name="main" srm.assessment.types=SAST srm.apikey=$SRM_KEY
+        $RUNNER_TEMP/synopsys-bridge --stage srm srm.url=https://poc219.srm.synopsys.com srm.project.name=FCBRR srm.branch.name=main srm.assessment.types=SAST srm.apikey=$SRM_KEY
     
     - name: Polaris (SAST)
       run: |
