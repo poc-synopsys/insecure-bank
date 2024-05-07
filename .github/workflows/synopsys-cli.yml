@@ -14,7 +14,7 @@ jobs:
       BRIDGECLI_LINUX64: "https://sig-repo.synopsys.com/artifactory/bds-integrations-release/com/synopsys/integration/synopsys-bridge/latest/synopsys-bridge-linux64.zip"
       BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL }}
       BLACKDUCK_API_TOKEN: ${{ secrets.BLACKDUCK_API_TOKEN }}
-      SRM_KEY: ${{ secrets.SRM_KEY }}
+      BRIDGE_SRM_APIKEY: ${{ secrets.SRM_KEY }}
       BRIDGE_SRM_URL: "https://poc219.srm.synopsys.com"
       BRIDGE_SRM_PROJECT_NAME: "FCBRR"
       BRIDGE_SRM_BRANCH_NAME: "main"
