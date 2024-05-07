@@ -20,6 +20,7 @@ jobs:
       BRIDGE_SRM_BRANCH_NAME: "main"
       BRIDGE_SRM_ASSESSMENT_TYPES: "SAST"
       
+      
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -36,7 +37,7 @@ jobs:
         
     - name: SRM (SAST)
       run: |
-        $RUNNER_TEMP/synopsys-bridge --stage srm
+        $RUNNER_TEMP/synopsys-bridge --stage srm srm.assessment.types=SAST
     
     - name: Polaris (SAST)
       run: |
