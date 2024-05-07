@@ -15,6 +15,7 @@ jobs:
       BLACKDUCK_URL: ${{ secrets.BLACKDUCK_URL }}
       BLACKDUCK_API_TOKEN: ${{ secrets.BLACKDUCK_API_TOKEN }}
       SRM_KEY: ${{ secrets.SRM_KEY }}
+      BRIDGE_SRM_URL: "https://poc219.srm.synopsys.com"
       
     steps:
     - name: Checkout
@@ -32,7 +33,7 @@ jobs:
         
     - name: SRM (SAST)
       run: |
-        $RUNNER_TEMP/synopsys-bridge --stage srm srm.url=https://poc219.srm.synopsys.com srm.project.name=FCBRR srm.branch.name=main srm.assessment.types=SAST srm.apikey=$SRM_KEY
+        $RUNNER_TEMP/synopsys-bridge --stage srm srm.project.name=FCBRR srm.branch.name=main srm.assessment.types=SAST srm.apikey=$SRM_KEY
     
     - name: Polaris (SAST)
       run: |
