@@ -1,15 +1,40 @@
 pipeline {
     agent any
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        jdk "JDK11"
-        maven "Maven"
-    }
     
     stages {
-     stage('Build') {
+        stage('Checkout') {
             steps {
-                bat 'mvn clean install -DskipTests=true'
+                checkout scm
+            }
+        }
+        stage('Black Duck Scan') {
+            steps {
+                script {
+                    // Perform the Synopsys Black Duck scan
+                    def scanResults = synopsysSecurityScan(
+                        scanType: 'BLACKDUCK',
+                        blackDuckInstallation: 'BD-PARTNER',
+                        failBuildForPolicyViolations: false,
+                        publishResults: true
+                    )
+                    
+                    // Get scan status and violations
+                    def scanStatus = scanResults.getScanStatus()
+                    def violations = scanResults.getPolicyViolations()
+                    
+                    // Format a comment with the scan results
+                    def comment = "Black Duck Scan Results: Status - ${scanStatus}\n"
+                    comment += "Policy Violations:\n"
+                    violations.each { violation ->
+                        comment += "- ${violation.policyName}: ${violation.description}\n"
+                    }
+                    
+                    // Post the comment to the GitHub PR
+                    githubPrComment(
+                        context: "Black Duck Security Scan",
+                        message: comment
+                    )
+                }
             }
         }
     }
