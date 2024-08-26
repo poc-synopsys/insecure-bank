@@ -10,7 +10,7 @@ pipeline {
         stage('Black Duck Scan') {
             steps {
                 script {
-                    // Perform the Synopsys Black Duck scan
+                    // Perform the Synopsys Black Duck scan 
                     def scanResults = synopsysSecurityScan(
                         scanType: 'BLACKDUCK',
                         blackDuckInstallation: 'BD-PARTNER',
